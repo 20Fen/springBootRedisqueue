@@ -21,8 +21,6 @@ public class Producer extends Thread{
     @RequestMapping("/out")
     private  void pop() throws Exception {
         byte[] bytes = JedisUtil.rpop(redisKey);
-        String s = JSON.toJSONString(bytes);
-
         Test msg = (Test) ObjectUtil.bytesToObject(bytes);
         if(msg != null){
             System.out.println(msg.getId()+"   "+msg.getContent());
